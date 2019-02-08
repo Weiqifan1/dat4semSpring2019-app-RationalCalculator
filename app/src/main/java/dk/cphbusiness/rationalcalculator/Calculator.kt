@@ -9,19 +9,23 @@ class Calculator {
     fun enter(number: Long) { push(number.toRational()) }
 
     fun div() {
-        stack1 /= pop()
+        val top = pop()
+        stack1 /= top
         }
 
     fun plus() {
-        stack1 += pop()
+        val top = pop()
+        stack1 += top
         }
 
     fun times() {
-        stack1 *= pop()
+        val top = pop()
+        stack1 *= top
         }
 
     fun minus() {
-        stack1 -= pop()
+        val top = pop()
+        stack1 -= top
         }
 
     fun push(rational: Rational) {

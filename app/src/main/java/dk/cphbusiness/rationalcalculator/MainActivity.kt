@@ -16,8 +16,10 @@ class MainActivity : AppCompatActivity() {
             val number: Long = editText2.text.toString().toLongOrNull() ?: 0L
             calculator.enter(number)
             updateStack()
+            editText2.setText("")
             }
         divButton.setOnClickListener {
+            checkInput()
             calculator.div()
             updateStack()
             }
@@ -32,6 +34,14 @@ class MainActivity : AppCompatActivity() {
         minusButton.setOnClickListener {
             calculator.minus()
             updateStack()
+            }
+        }
+
+    fun checkInput() {
+        val number = editText2.text.toString().toLongOrNull()
+        if (number != null) {
+            calculator.enter(number)
+            editText2.setText("")
             }
         }
 
