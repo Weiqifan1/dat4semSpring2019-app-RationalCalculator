@@ -2,6 +2,7 @@ package dk.cphbusiness.rationalcalculator
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,27 +14,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         // val eb = findViewById<Button>(R.id.enterButton)
         enterButton.setOnClickListener {
-            val number: Long = editText2.text.toString().toLongOrNull() ?: 0L
-            calculator.enter(number)
+            val number = editText2.text.toString().toLongOrNull()
+            if (number == null) {
+                val top = calculator.stack1
+                calculator.push(top)
+                }
+            else calculator.enter(number)
             updateStack()
             editText2.setText("")
-            }
-        divButton.setOnClickListener {
-            checkInput()
-            calculator.div()
-            updateStack()
-            }
-        plusButton.setOnClickListener {
-            calculator.plus()
-            updateStack()
-            }
-        timesButton.setOnClickListener {
-            calculator.times()
-            updateStack()
-            }
-        minusButton.setOnClickListener {
-            calculator.minus()
-            updateStack()
             }
         }
 
@@ -46,7 +34,20 @@ class MainActivity : AppCompatActivity() {
         }
 
     fun updateStack() {
+        stack4.setText(calculator.stack4.text)
+        stack3.setText(calculator.stack3.text)
         stack2.setText(calculator.stack2.text)
         stack1.setText(calculator.stack1.text)
         }
-}
+
+    fun doOperation(view: View) {
+        checkInput()
+        when (view) {
+            minusButton -> calculator.minus()
+            plusButton -> calculator.plus()
+            timesButton -> calculator.times()
+            divButton -> calculator.div()
+            }
+        updateStack()
+        }
+    }

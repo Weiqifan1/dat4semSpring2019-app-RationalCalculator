@@ -81,6 +81,7 @@
             android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline"
+            android:onClick="doOperation"
     />
     <Button
             android:text="-"
@@ -91,6 +92,7 @@
             android:id="@+id/minusButton" android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline"
+            android:onClick="doOperation"
     />
     <Button
             android:text="*"
@@ -101,6 +103,7 @@
             android:id="@+id/timesButton" android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline"
+            android:onClick="doOperation"
     />
     <Button
             android:text="/"
@@ -111,6 +114,7 @@
             android:id="@+id/divButton" android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline"
+            android:onClick="doOperation"
             />
     <Button
             android:text="Enter"
