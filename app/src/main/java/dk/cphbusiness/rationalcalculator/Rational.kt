@@ -7,7 +7,9 @@ data class Rational (val numerator: Long, val denominator: Long) : Comparable<Ra
 
     val gcd: Long by lazy { gcd(numerator, denominator) }
     val text: String
-        get() = "${numerator/gcd}/${denominator/gcd}"
+        get() = if (denominator/gcd == 1L) "${numerator/gcd}"
+                else "${numerator/gcd}/${denominator/gcd}"
+
 
     companion object {
         fun normalised(numerator: Long, denominator: Long): Rational {

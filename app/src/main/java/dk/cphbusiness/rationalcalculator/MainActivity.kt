@@ -2,15 +2,17 @@ package dk.cphbusiness.rationalcalculator
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    val calculator = Calculator()
+    val calculator = Calculator();
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         // val eb = findViewById<Button>(R.id.enterButton)
         enterButton.setOnClickListener {
@@ -24,6 +26,10 @@ class MainActivity : AppCompatActivity() {
             editText2.setText("")
             }
         }
+
+    override fun onPause() {
+        super.onPause()
+      }
 
     fun checkInput() {
         val number = editText2.text.toString().toLongOrNull()
@@ -47,6 +53,7 @@ class MainActivity : AppCompatActivity() {
             plusButton -> calculator.plus()
             timesButton -> calculator.times()
             divButton -> calculator.div()
+            // divButton -> calculator = calculator.nyDiv()
             }
         updateStack()
         }

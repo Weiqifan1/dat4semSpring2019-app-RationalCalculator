@@ -1,6 +1,8 @@
 package dk.cphbusiness.rationalcalculator
 
-class Calculator {
+import java.io.Serializable
+
+class Calculator : Serializable {
     var stack4: Rational = 0.toRational()
     var stack3: Rational = 0.toRational()
     var stack2: Rational = 0.toRational()
@@ -8,9 +10,13 @@ class Calculator {
 
     fun enter(number: Long) { push(number.toRational()) }
 
+    fun nyDiv(): Calculator {
+        TODO("implemnt")
+        }
+
     fun div() {
         val top = pop()
-        stack1 /= top
+        stack1 = stack1/top
         }
 
     fun plus() {
