@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.calculator_stack.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var calculator: Calculator
-    var inputValue: Long = 0
+    var inputValue = 0L
+    var inputActive = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,12 +62,14 @@ class MainActivity : AppCompatActivity() {
         stack3.setText(calculator.stack3.text)
         stack2.setText(calculator.stack2.text)
         stack1.setText(calculator.stack1.text)
-        inputField.setText(inputValue.toString())
+        if (inputActive) inputField.setText(inputValue.toString())
+        else inputField.setText("")
         }
 
-    fun doOperation(view: View) {
+    fun doDigit(view: View) {
         fun updateInput(digit: Int) { inputValue = 10*inputValue + digit}
         // checkInput()
+        println("${view.id}")
         when (view) {
             button0 -> updateInput(0)
             button1 -> updateInput(1)
@@ -78,20 +81,42 @@ class MainActivity : AppCompatActivity() {
             button7 -> updateInput(7)
             button8 -> updateInput(8)
             button9 -> updateInput(9)
-            buttonEnter -> {
-                if (inputValue != 0L) calculator.enter(inputValue)
-                else {
-                    val top = calculator.stack1
-                    calculator.push(top)
-                    }
-                inputValue = 0L
-                }
-            buttonPlus -> {
-                if (inputValue != 0L) calculator.enter(inputValue)
-                calculator.plus()
-                inputValue = 0L
+            }
+        inputActive = true
+        updateStack()
+        }
+
+    fun doEnter(view: View) {
+        if (inputActive) calculator = calculator.enter(inputValue)
+        else {
+            val top = calculator.stack1
+            calculator = calculator.push(top)
+            }
+        inputValue = 0L
+        inputActive = false
+        updateStack()
+        }
+
+    fun doOperation(view: View) {
+        if (inputActive) calculator = calculator.enter(inputValue)
+        when (view) {
+            buttonDiv -> calculator = calculator.div()
+            buttonTimes -> calculator = calculator.times()
+            buttonMinus -> calculator = calculator.minus()
+            buttonPlus -> calculator = calculator.plus()
+            buttonClear -> calculator = calculator.clear()
+            buttonStore -> calculator.store()
+            buttonRecall -> calculator.recall()
+            buttonUndo -> {
+                calculator = calculator.history ?: calculator
+
+                // val h = calculator.history
+                // if (h != null) calculator = h
+
                 }
             }
+        inputValue = 0L
+        inputActive = false
         updateStack()
         }
     }
