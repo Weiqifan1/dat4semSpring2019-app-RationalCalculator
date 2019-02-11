@@ -8,10 +8,14 @@ import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    val calculator = Calculator();
+    lateinit var calculator: Calculator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (savedInstanceState == null) calculator = Calculator()
+        else calculator =
+            savedInstanceState.getSerializable("calculator") as Calculator? ?: Calculator()
 
         setContentView(R.layout.activity_main)
         // val eb = findViewById<Button>(R.id.enterButton)
@@ -25,6 +29,12 @@ class MainActivity : AppCompatActivity() {
             updateStack()
             editText2.setText("")
             }
+        updateStack()
+        }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("calculator", calculator)
         }
 
     override fun onPause() {
