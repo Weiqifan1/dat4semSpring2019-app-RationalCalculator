@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              tools:showIn="@layout/activity_main"
+              tools:context=".MainActivity">
+
+    <Button
+            android:text="+"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/plusButton"
+            android:layout_marginTop="24dp"
+            android:onClick="doOperation"
+    />
+    <Button
+            android:text="-"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/minusButton"
+            android:layout_marginTop="24dp"
+            android:onClick="doOperation"
+    />
+    <Button
+            android:text="*"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/timesButton"
+            android:layout_marginTop="24dp"
+            android:onClick="doOperation"
+    />
+    <Button
+            android:text="/"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/divButton" android:layout_marginTop="24dp"
+            android:onClick="doOperation"
+    />
+    <Button
+            android:text="Enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/enterButton"
+            android:layout_marginTop="24dp"
+    />
+</LinearLayout>

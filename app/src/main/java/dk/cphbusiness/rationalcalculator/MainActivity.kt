@@ -6,6 +6,8 @@ import android.os.PersistableBundle
 import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.calculator_buttons.*
+import kotlinx.android.synthetic.main.calculator_stack.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var calculator: Calculator
